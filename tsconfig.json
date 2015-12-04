@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "target": "es6",
+        "module": "umd",
         "moduleResolution": "node",
         "isolatedModules": false,
         "jsx": "react",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "declaration": false,
+        "declaration": true,
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false,
@@ -15,12 +16,15 @@
     },
     "filesGlob": [
         "**/*.ts",
-        "**/*.d.ts",
+        "!**/*.d.ts",
+        "typings/tsd.d.ts",
         "!node_modules/**"
     ],
     "files": [
+        "examples/simple.ts",
         "index.ts",
-        "typings/react.d.ts"
+        "test/index.test.ts",
+        "typings/tsd.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true

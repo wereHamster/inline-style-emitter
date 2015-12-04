@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+cd "$(dirname "$0")/.."
+
+script/bootstrap
+
+
+./node_modules/.bin/tsc ||:
+./node_modules/.bin/browserify -t [ babelify --presets [ es2015 ] ] -o test.js test/*.test.js
+./node_modules/.bin/mocha test.js

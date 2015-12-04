@@ -1,0 +1,29 @@
+{
+  "name": "inline-style-emitter",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "script/test"
+  },
+  "devDependencies": {
+    "babel": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wereHamster/inline-style-emitter.git"
+  },
+  "typings": "index.d.ts",
+  "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wereHamster/inline-style-emitter/issues"
+  },
+  "homepage": "https://github.com/wereHamster/inline-style-emitter"
+}
