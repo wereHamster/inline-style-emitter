@@ -1,5 +1,6 @@
 // We're not actually importing React, just the types.
-import { Props, ReactElement, ReactNode } from "react";
+import { Props, ReactType, ReactElement, ReactNode,
+    ComponentClass, StatelessComponent } from "react";
 
 
 
@@ -318,31 +319,59 @@ emitStyle(h: Handle, style: Style): string[] {
 // Go through a React node, recursively, and generate class rules out of
 // 'style' properties. Removes the 'style' property and replaces it with
 // the generated 'className'.
+
 export function
 processStyleProperties<T>(h: Handle, React, el: ReactElement<T>): ReactElement<T> {
-    let oldProps    = <{ children?, style?, className? }> el.props
-      , oldChildren = oldProps.children
-      , style       = oldProps.style;
+    let type = el.type;
 
-    let newChildren = oldChildren
-        ? generateStyleSheetForNode(h, React, oldChildren)
-        : undefined;
+    if (typeof type === "function") {
+        // ComponentClass<any> | StatelessComponent<any>
+        return React.createElement(wrapType(h, React, type), el.props);
 
-    // Only set 'className' if the old props have a style and no className.
-    // Users still may have a reason to manually set className if they use an
-    // external stylesheet (eg. bootstrap, or an icon set).
-    let newProps = style && oldProps.className === undefined
-        ? { style: undefined, className: emitStyle(h, style).join(" ") }
-        : undefined;
-
-    // Avoid cloning the element if neither the props nor the children have
-    // changed.
-    if (newProps === undefined && newChildren === undefined) {
-        return el;
     } else {
-        return React.cloneElement(el, newProps, newChildren);
+        let oldProps    = <{ children?, style?, className? }> el.props
+          , oldChildren = oldProps.children
+          , style       = oldProps.style;
+
+        let newChildren = oldChildren
+            ? generateStyleSheetForNode(h, React, oldChildren)
+            : undefined;
+
+        // Only set 'className' if the old props have a style and no className.
+        // Users still may have a reason to manually set className if they use an
+        // external stylesheet (eg. bootstrap, or an icon set).
+        let newProps = style && oldProps.className === undefined
+            ? { style: undefined, className: emitStyle(h, style).join(" ") }
+            : undefined;
+
+        // Avoid cloning the element if neither the props nor the children have
+        // changed.
+        if (newProps === undefined && newChildren === undefined) {
+            return el;
+        } else {
+            return React.cloneElement(el, newProps, newChildren);
+        }
     }
 }
+
+
+// Wrap a component class or stateless component in a new type so that we can
+// process its children.
+function wrapType(h: Handle, React, type: ComponentClass<any> | StatelessComponent<any>): ReactType {
+    if (type.prototype && type.prototype instanceof React.Component) {
+        return <any> class extends (<ComponentClass<any>>type.prototype.constructor) {
+            render() {
+                return processStyleProperties(h, React, super.render());
+            }
+        };
+    } else {
+        return function (props, context) {
+            return processStyleProperties(h, React,
+                (<StatelessComponent<any>>type)(props, context));
+        };
+    }
+}
+
 
 function generateStyleSheetForNode(h: Handle, React, node: ReactNode): ReactNode {
     if (Array.isArray(node)) {
