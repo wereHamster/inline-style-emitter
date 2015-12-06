@@ -292,6 +292,11 @@ export class DocumentEmitter implements Emitter {
 // ...
 
 export class Handle {
+
+    public typeWrappers: WeakMap<any, any> = new WeakMap();
+    // ^ We need to cache the type wrappers because React uses reference
+    // equality to check if the type has changed or not.
+
     constructor(public emitter: Emitter) {}
 }
 
@@ -358,6 +363,17 @@ processStyleProperties<T>(h: Handle, React, el: ReactElement<T>): ReactElement<T
 // Wrap a component class or stateless component in a new type so that we can
 // process its children.
 function wrapType(h: Handle, React, type: ComponentClass<any> | StatelessComponent<any>): ReactType {
+    let w = h.typeWrappers.get(type);
+
+    if (w === undefined) {
+        w = mkTypeWrapper(h, React, type);
+        h.typeWrappers.set(type, w);
+    }
+
+    return w;
+}
+
+function mkTypeWrapper(h: Handle, React, type: ComponentClass<any> | StatelessComponent<any>): ReactType {
     if (type.prototype && type.prototype instanceof React.Component) {
         return <any> class extends (<ComponentClass<any>>type.prototype.constructor) {
             render() {
