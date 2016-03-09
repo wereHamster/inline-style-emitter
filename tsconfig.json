@@ -14,19 +14,10 @@
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
     },
-    "filesGlob": [
-        "**/*.ts",
-        "!**/*.d.ts",
-        "typings/main.d.ts",
-        "!node_modules/**"
-    ],
     "files": [
         "examples/simple.ts",
         "index.ts",
         "test/index.test.ts",
         "typings/main.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    ]
 }
