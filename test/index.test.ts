@@ -1,4 +1,5 @@
 /* global describe, it, beforeEach */
+/* tslint:disable whitespace */
 
 declare var describe: any, it;
 
