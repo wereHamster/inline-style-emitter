@@ -1,6 +1,8 @@
 <div style="text-align:center;font-size:1.6em;margin-bottom:1.5em">Inline Style Emitter</div>
 
-**What it is**: A library which helps generate CSS from inline style objects.
+**TLDR**: Write inline styles in your React components. Automatically emit
+those CSS rules into a stylesheet. Works on the client as well as on the server
+(when generating static pages).
 
 **Why does it exist**: Generating CSS rules can be viewed as part of
 rendering. There is no reason, on the conceptual level, to have a split between
