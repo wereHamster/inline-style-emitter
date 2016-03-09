@@ -17,14 +17,14 @@
     "filesGlob": [
         "**/*.ts",
         "!**/*.d.ts",
-        "typings/tsd.d.ts",
+        "typings/main.d.ts",
         "!node_modules/**"
     ],
     "files": [
         "examples/simple.ts",
         "index.ts",
         "test/index.test.ts",
-        "typings/tsd.d.ts"
+        "typings/main.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true
