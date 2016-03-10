@@ -110,7 +110,7 @@ function extractStyleRules
         } else if (k[0] === "@") {
             // Media query or another @-rule. Except @keyframes an @font-face,
             // those are handled earlier.
-            extractStyleRules(rules, s[k], concat(suffixes, [k]), []);
+            extractStyleRules(rules, s[k], concat(conditions, [k]), suffixes);
 
         } else {
             // TODO: Replace keyframe placeholders with generated names.

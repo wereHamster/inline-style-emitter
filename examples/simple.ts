@@ -18,8 +18,28 @@ class Bar extends React.Component<{bar:string},{}> {
     }
 }
 
+let complexStyle = {
+    margin: '10px 20px',
+
+    ":hover": {
+        color: "red",
+        backgroundColor: "blue",
+
+        "@media (max-width: 700px)": {
+            color: 'magenta',
+        },
+    },
+
+    "@media (max-width: 700px)": {
+        color: "green",
+        ":active": {
+            marginLeft: "10px",
+        },
+    },
+}
+
 let rootNode = React.DOM.div
-    ( { style: {margin: "10px 20px", ":hover": { color: "red", backgroundColor: "blue" }, "@media (max-width: 700px)": { color: "green", ":active": { marginLeft: "10px" }}}}
+    ( { style: complexStyle }
     , React.DOM.div({ style: {margin: "10px 21px", "::after": { content: "''", width: "10px", height: "10px", background: "magenta", display: "inline-block",border:"1px solid black", borderRadius: "2px", marginLeft: "40px"}}}, "xxx")
     , React.DOM.span({ style: { color: "red", backgroundColor: "blue" } }, "test 1")
     , React.DOM.span({ style: { color: "red", backgroundColor: "blue" } }, "test 2")
