@@ -15,6 +15,7 @@
         "suppressImplicitAnyIndexErrors": true
     },
     "files": [
+        "examples/benchmark.ts",
         "examples/simple.ts",
         "index.ts",
         "test/index.test.ts",

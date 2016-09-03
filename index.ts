@@ -127,14 +127,32 @@ function extractStyleRules
 // A hash which is suitable to be used as a class name. The hash is made over
 // the style declarations and all conditions and suffixes.
 function ruleHash(rule: Rule): string {
-    return "" + stringHash(
-        [ rule.conditions.join("")
-        , rule.suffixes.join("")
-        , JSON.stringify(Object.keys(rule.style).sort().map(k => {
-            return [k, rule.style[k]];
-          }))
-        ].join("")
-    );
+    let i, h = 0;
+
+    for (i = 0; i < rule.conditions.length; i++) {
+        h ^= stringHash(rule.conditions[i]);
+    }
+
+    for (i = 0; i < rule.suffixes.length; i++) {
+        h ^= stringHash(rule.suffixes[i]);
+    }
+
+    const sortedKeys = Object.keys(rule.style).sort();
+    for (i = 0; i < sortedKeys.length; i++) {
+        const key = sortedKeys[i];
+        h ^= stringHash(key);
+
+        const v = rule.style[key];
+        if (typeof v === 'string') {
+            h ^= stringHash(v);
+        } else {
+            for (let j = 0; j < v.length; j++) {
+                h ^= stringHash(v[j]);
+            }
+        }
+    }
+
+    return "" + h;
 }
 
 
@@ -171,10 +189,10 @@ function classNameFromHash(hash: string): string {
 }
 
 export function
-ruleText(rule: Rule): string {
+ruleText(rule: Rule, hash: string): string {
     return wrapWithCondition(rule.conditions,
         [ "."
-        , classNameFromHash(ruleHash(rule))
+        , classNameFromHash(hash)
         , rule.suffixes.join("")
         , "{"
         , cssStyleDeclarationsToText(rule.style)
@@ -205,7 +223,7 @@ function concat(xs, ys) {
 // TODO: Use a better hash function, one with more bits (at least 64).
 // https://github.com/vkandy/jenkins-hash-js/blob/master/src/jenkins.js seems
 // a good candidate which is small and has no dependencies.
-function stringHash(str: string): string {
+function stringHash(str: string): number {
     let length = str.length
       , value  = 0x811c9dc5;
 
@@ -214,7 +232,7 @@ function stringHash(str: string): string {
         value += (value << 1) + (value << 4) + (value << 7) + (value << 8) + (value << 24);
     }
 
-    return (value >>> 0).toString(16);
+    return (value >>> 0) | 0;
 }
 
 
@@ -274,10 +292,10 @@ export class DocumentEmitter implements Emitter {
 
     emitStyle(style: Style): string[] {
         return styleRules(style).map(rule => {
-            let hash = ruleHash(rule);
+            const hash = ruleHash(rule);
 
             if (!this.cssRules.has(hash)) {
-                this.styleSheet.insertRule(ruleText(rule), 0);
+                this.styleSheet.insertRule(ruleText(rule, hash), 0);
                 this.cssRules.add(hash);
             }
 
