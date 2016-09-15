@@ -18,7 +18,7 @@
         "examples/benchmark.ts",
         "examples/simple.ts",
         "index.ts",
-        "test/index.test.ts",
+        "index.test.ts",
         "typings/index.d.ts"
     ]
 }

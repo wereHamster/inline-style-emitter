@@ -1,0 +1,70 @@
+exports[`cssStyleDeclarationsToText snapshots {"color":"red"} 1`] = `"color:red"`;
+
+exports[`cssStyleDeclarationsToText snapshots {"color":["red","blue"]} 1`] = `"color:red;color:blue"`;
+
+exports[`styleRules snapshots {"@font-face":{"test":{}}} 1`] = `Array []`;
+
+exports[`styleRules snapshots {"@keyframes":{"test":{"0%":{"width":"1px"}}}} 1`] = `Array []`;
+
+exports[`styleRules snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
+Array [
+  Object {
+    "conditions": Array [
+      "@media (max-width:1px)"
+    ],
+    "style": Object {
+      "color": "red"
+    },
+    "suffixes": Array []
+  }
+]
+`;
+
+exports[`styleRules snapshots {"@media (max-width:1px)":{}} 1`] = `Array []`;
+
+exports[`styleRules snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
+Array [
+  Object {
+    "conditions": Array [],
+    "style": Object {
+      "color": "blue"
+    },
+    "suffixes": Array [
+      ":hover"
+    ]
+  },
+  Object {
+    "conditions": Array [],
+    "style": Object {
+      "color": "red"
+    },
+    "suffixes": Array []
+  }
+]
+`;
+
+exports[`styleRules snapshots {"color":"red",":hover":{}} 1`] = `
+Array [
+  Object {
+    "conditions": Array [],
+    "style": Object {
+      "color": "red"
+    },
+    "suffixes": Array []
+  }
+]
+`;
+
+exports[`styleRules snapshots {"color":"red"} 1`] = `
+Array [
+  Object {
+    "conditions": Array [],
+    "style": Object {
+      "color": "red"
+    },
+    "suffixes": Array []
+  }
+]
+`;
+
+exports[`styleRules snapshots {} 1`] = `Array []`;

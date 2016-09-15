@@ -9,7 +9,7 @@ const emitter = new DocumentEmitter(document);
 const h = new Handle(emitter);
 
 function div(i) {
-    return React.DOM.div({ style: { display: 'inline-block', width: "3px", height: "3px", backgroundColor: `hsl(${i % 360},100%,50%)` }});
+    return React.DOM.div({ style: { display: "inline-block", width: "3px", height: "3px", backgroundColor: `hsl(${i % 360},100%,50%)` }});
 }
 
 let generationNumber = 0;
