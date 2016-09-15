@@ -143,7 +143,7 @@ function ruleHash(rule: Rule): string {
         h ^= stringHash(key);
 
         const v = rule.style[key];
-        if (typeof v === 'string') {
+        if (typeof v === "string") {
             h ^= stringHash(v);
         } else {
             for (let j = 0; j < v.length; j++) {

@@ -19,14 +19,14 @@ class Bar extends React.Component<{bar:string},{}> {
 }
 
 let complexStyle = {
-    margin: '10px 20px',
+    margin: "10px 20px",
 
     ":hover": {
         color: "red",
         backgroundColor: "blue",
 
         "@media (max-width: 700px)": {
-            color: 'magenta',
+            color: "magenta",
         },
     },
 
@@ -36,15 +36,15 @@ let complexStyle = {
             marginLeft: "10px",
         },
     },
-}
+};
 
 let rootNode = React.DOM.div
     ( { style: complexStyle }
     , React.DOM.div({ style: {margin: "10px 21px", "::after": { content: "''", width: "10px", height: "10px", background: "magenta", display: "inline-block",border:"1px solid black", borderRadius: "2px", marginLeft: "40px"}}}, "xxx")
     , React.DOM.span({ style: { color: "red", backgroundColor: "blue" } }, "test 1")
     , React.DOM.span({ style: { color: "red", backgroundColor: "blue" } }, "test 2")
-    , React.createElement(Foo, { foo: 'from prop' })
-    , React.createElement(Bar, { bar: 'from prop' })
+    , React.createElement(Foo, { foo: "from prop" })
+    , React.createElement(Bar, { bar: "from prop" })
     );
 
 let newRootNode = processStyleProperties(h, React, rootNode);

@@ -19,6 +19,6 @@
         "examples/simple.ts",
         "index.ts",
         "test/index.test.ts",
-        "typings/main.d.ts"
+        "typings/index.d.ts"
     ]
 }
