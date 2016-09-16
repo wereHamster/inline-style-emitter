@@ -6,7 +6,7 @@ script/bootstrap
 
 
 ./node_modules/.bin/tsc ||:
-./node_modules/.bin/babel --presets es2015 index.js -o tmp
+./node_modules/.bin/babel index.js -o tmp
 mv tmp index.js
 
 npm publish
