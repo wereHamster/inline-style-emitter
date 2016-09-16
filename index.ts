@@ -134,7 +134,7 @@ function extractStyleRules
     if (Object.keys(cssStyleDeclarations).length > 0) {
         rules.push({
             get className() {
-                const value = classNameFromHash(ruleHash(this));
+                const value = 'c' + ruleHash(this);
                 Object.defineProperty(this, 'className', { value });
                 return value;
             },
@@ -213,9 +213,6 @@ cssStyleDeclarationsToText(x: { [key: string]: string | string[] }): string {
 }
 
 
-function classNameFromHash(hash: string): string {
-    return "c" + hash;
-}
 
 export function
 ruleText(rule: CSSStyleRuleEx): string {
