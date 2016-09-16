@@ -16,7 +16,9 @@ import { Props, ReactType, ReactElement, ReactNode,
 // The CSS style declarations within should not have dependencies to any other
 // CSS rules.
 
-export type Style = { [key: string]: any };
+export type CSSStyleDeclarationEx = {
+    [key: string]: any
+};
 
 
 
@@ -59,7 +61,7 @@ export type Rule = {
 // Convert a Style object into a list of rules.
 
 export function
-styleRules(x: Style): Rule[] {
+styleRules(x: CSSStyleDeclarationEx): Rule[] {
     let rules = [];
     extractStyleRules(rules, x, [], []);
     return rules;
@@ -74,7 +76,7 @@ styleRules(x: Style): Rule[] {
 
 function extractStyleRules
 ( rules: Rule[]
-, s: Style
+, s: CSSStyleDeclarationEx
 , conditions: string[]
 , suffixes: string[]
 ): void {
@@ -244,7 +246,7 @@ function stringHash(str: string): number {
 
 export interface Emitter {
 
-    emitStyle(style: Style): string[];
+    emitStyle(style: CSSStyleDeclarationEx): string[];
     // ^ The function takes a Style and returns a list of class names which
     // should be attached to an element so that it is styled accordingly.
 
@@ -290,7 +292,7 @@ export class DocumentEmitter implements Emitter {
         this.styleSheet = <CSSStyleSheet> document.styleSheets[document.styleSheets.length - 1];
     }
 
-    emitStyle(style: Style): string[] {
+    emitStyle(style: CSSStyleDeclarationEx): string[] {
         return styleRules(style).map(rule => {
             const hash = ruleHash(rule);
 
@@ -325,7 +327,7 @@ export class Handle {
 // THe only public function we have so far.
 
 function
-emitStyle(h: Handle, style: Style): string[] {
+emitStyle(h: Handle, style: CSSStyleDeclarationEx): string[] {
     return h.emitter.emitStyle(style);
 }
 
