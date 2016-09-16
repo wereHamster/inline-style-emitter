@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "tslint index.ts index.test.ts examples/*.ts",
     "tsc": "tsc",
+    "tsc:watch": "tsc --watch",
     "test": "script/test"
   },
   "devDependencies": {
