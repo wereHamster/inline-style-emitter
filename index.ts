@@ -312,24 +312,26 @@ export class DocumentEmitter implements Emitter {
 
 
     constructor(private document: Document) {
-        let style = document.createElement("style");
+        const style = document.createElement("style");
         style.type = "text/css";
         document.head.appendChild(style);
 
         this.styleSheet = <CSSStyleSheet> document.styleSheets[document.styleSheets.length - 1];
     }
 
+    private emitRule = (rule: CSSStyleRuleEx): string => {
+        const {className} = rule;
+
+        if (!this.cssRules.has(className)) {
+            this.styleSheet.insertRule(rule.cssText, 0);
+            this.cssRules.add(className);
+        }
+
+        return className;
+    }
+
     emitStyle(style: CSSStyleDeclarationEx): string[] {
-        return styleRules(style).map(rule => {
-            const {className} = rule;
-
-            if (!this.cssRules.has(className)) {
-                this.styleSheet.insertRule(rule.cssText, 0);
-                this.cssRules.add(className);
-            }
-
-            return className;
-        });
+        return styleRules(style).map(this.emitRule);
     }
 }
 
