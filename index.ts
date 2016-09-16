@@ -35,6 +35,14 @@ export type CSSStyleDeclarationEx = {
 // implementation).
 
 export type CSSStyleRuleEx = {
+    className: string;
+    // ^ The className which should be used when emitting the rule, and when
+    // referencing it from React elements.
+    //
+    // Computing the className is quite expensive, because to ensure that it
+    // is globally unique, we hash the contents of the rule. It is therefore
+    // implemented as a memoized getter.
+
     conditions: string[];
     // ^ A list of media queries and other conditions to wrap the style with.
     // CSS conditional and grouping rules can be nested, so this is an array.
@@ -62,7 +70,7 @@ export type CSSStyleRuleEx = {
 
 export function
 styleRules(x: CSSStyleDeclarationEx): CSSStyleRuleEx[] {
-    let rules = [];
+    const rules = [];
     extractStyleRules(rules, x, [], []);
     return rules;
 }
@@ -121,7 +129,17 @@ function extractStyleRules
     });
 
     if (Object.keys(cssStyleDeclarations).length > 0) {
-        rules.push({ conditions, suffixes, style: cssStyleDeclarations });
+        rules.push({
+            get className() {
+                const className = classNameFromHash(ruleHash(this));
+                Object.defineProperty(this, 'className', { value: className });
+                return className;
+            },
+
+            conditions,
+            suffixes,
+            style: cssStyleDeclarations,
+        });
     }
 }
 
