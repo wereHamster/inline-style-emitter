@@ -9,9 +9,11 @@ exports[`styleRules snapshots {"@keyframes":{"test":{"0%":{"width":"1px"}}}} 1`]
 exports[`styleRules snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
 Array [
   Object {
+    "className": "c-553554276",
     "conditions": Array [
       "@media (max-width:1px)"
     ],
+    "cssText": "@media (max-width:1px){.c-553554276{color:red}}",
     "style": Object {
       "color": "red"
     },
@@ -25,7 +27,9 @@ exports[`styleRules snapshots {"@media (max-width:1px)":{}} 1`] = `Array []`;
 exports[`styleRules snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
 Array [
   Object {
+    "className": "c-1898795152",
     "conditions": Array [],
+    "cssText": ".c-1898795152:hover{color:blue}",
     "style": Object {
       "color": "blue"
     },
@@ -34,7 +38,9 @@ Array [
     ]
   },
   Object {
+    "className": "c2106253956",
     "conditions": Array [],
+    "cssText": ".c2106253956{color:red}",
     "style": Object {
       "color": "red"
     },
@@ -46,7 +52,9 @@ Array [
 exports[`styleRules snapshots {"color":"red",":hover":{}} 1`] = `
 Array [
   Object {
+    "className": "c2106253956",
     "conditions": Array [],
+    "cssText": ".c2106253956{color:red}",
     "style": Object {
       "color": "red"
     },
@@ -58,7 +66,9 @@ Array [
 exports[`styleRules snapshots {"color":"red"} 1`] = `
 Array [
   Object {
+    "className": "c2106253956",
     "conditions": Array [],
+    "cssText": ".c2106253956{color:red}",
     "style": Object {
       "color": "red"
     },
