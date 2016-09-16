@@ -137,15 +137,15 @@ function extractStyleRules
             get className() {
                 // Need to prefix the hash (number) with a letter because CSS
                 // selectors can not begin with a number.
-                const value = 'c' + styleHash(conditions, suffixes, cssStyleDeclarations);
+                const value = "c" + styleHash(conditions, suffixes, cssStyleDeclarations);
 
-                Object.defineProperty(this, 'className', { value });
+                Object.defineProperty(this, "className", { value });
                 return value;
             },
 
             get cssText() {
                 const value = ruleText(this.className, conditions, suffixes, cssStyleDeclarations);
-                Object.defineProperty(this, 'cssText', { value });
+                Object.defineProperty(this, "cssText", { value });
                 return value;
             },
 
