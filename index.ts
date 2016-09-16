@@ -159,7 +159,11 @@ function extractStyleRules
 
 // A hash which is suitable to be used as a class name. The hash is made over
 // the style declarations and all conditions and suffixes.
-function styleHash(conditions: string[], suffixes: string[], style: { [key: string]: string | string[] }): string {
+function styleHash
+( conditions: string[]
+, suffixes: string[]
+, style: { [key: string]: string | string[] }
+): string {
     let i, h = 0;
 
     for (i = 0; i < conditions.length; i++) {
@@ -219,7 +223,12 @@ cssStyleDeclarationsToText(x: { [key: string]: string | string[] }): string {
 
 
 export function
-ruleText(className: string, conditions: string[], suffixes: string[], style: { [key: string]: string | string[] }): string {
+ruleText
+( className: string
+, conditions: string[]
+, suffixes: string[]
+, style: { [key: string]: string | string[] }
+): string {
     return wrapWithCondition(conditions,
         [ "."
         , className
