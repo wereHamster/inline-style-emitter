@@ -59,6 +59,9 @@ export type CSSStyleRuleEx = {
     // object. Arrays are converted to multiple declarations for the same key.
     // This is used to provide graceful degradation on older browsers which do
     // not support the latest syntax.
+
+    cssText: string;
+    // ^ See CSSStyleRule cssText attribute.
 }
 
 
@@ -131,14 +134,20 @@ function extractStyleRules
     if (Object.keys(cssStyleDeclarations).length > 0) {
         rules.push({
             get className() {
-                const className = classNameFromHash(ruleHash(this));
-                Object.defineProperty(this, 'className', { value: className });
-                return className;
+                const value = classNameFromHash(ruleHash(this));
+                Object.defineProperty(this, 'className', { value });
+                return value;
             },
 
             conditions,
             suffixes,
             style: cssStyleDeclarations,
+
+            get cssText() {
+                const value = ruleText(this);
+                Object.defineProperty(this, 'cssText', { value });
+                return value;
+            },
         });
     }
 }
@@ -209,10 +218,10 @@ function classNameFromHash(hash: string): string {
 }
 
 export function
-ruleText(rule: CSSStyleRuleEx, hash: string): string {
+ruleText(rule: CSSStyleRuleEx): string {
     return wrapWithCondition(rule.conditions,
         [ "."
-        , classNameFromHash(hash)
+        , rule.className
         , rule.suffixes.join("")
         , "{"
         , cssStyleDeclarationsToText(rule.style)
@@ -312,14 +321,14 @@ export class DocumentEmitter implements Emitter {
 
     emitStyle(style: CSSStyleDeclarationEx): string[] {
         return styleRules(style).map(rule => {
-            const hash = ruleHash(rule);
+            const {className} = rule;
 
-            if (!this.cssRules.has(hash)) {
-                this.styleSheet.insertRule(ruleText(rule, hash), 0);
-                this.cssRules.add(hash);
+            if (!this.cssRules.has(className)) {
+                this.styleSheet.insertRule(rule.cssText, 0);
+                this.cssRules.add(className);
             }
 
-            return classNameFromHash(hash);
+            return className;
         });
     }
 }
