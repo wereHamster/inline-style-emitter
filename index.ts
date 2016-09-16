@@ -34,7 +34,7 @@ export type CSSStyleDeclarationEx = {
 // a CSSStyleSheet or written into a file (depending on the Emitter
 // implementation).
 
-export type CSSRuleEx = {
+export type CSSStyleRuleEx = {
     conditions: string[];
     // ^ A list of media queries and other conditions to wrap the style with.
     // CSS conditional and grouping rules can be nested, so this is an array.
@@ -61,7 +61,7 @@ export type CSSRuleEx = {
 // Convert a Style object into a list of rules.
 
 export function
-styleRules(x: CSSStyleDeclarationEx): CSSRuleEx[] {
+styleRules(x: CSSStyleDeclarationEx): CSSStyleRuleEx[] {
     let rules = [];
     extractStyleRules(rules, x, [], []);
     return rules;
@@ -75,7 +75,7 @@ styleRules(x: CSSStyleDeclarationEx): CSSRuleEx[] {
 // list. This function is recursive.
 
 function extractStyleRules
-( rules: CSSRuleEx[]
+( rules: CSSStyleRuleEx[]
 , s: CSSStyleDeclarationEx
 , conditions: string[]
 , suffixes: string[]
@@ -128,7 +128,7 @@ function extractStyleRules
 
 // A hash which is suitable to be used as a class name. The hash is made over
 // the style declarations and all conditions and suffixes.
-function ruleHash(rule: CSSRuleEx): string {
+function ruleHash(rule: CSSStyleRuleEx): string {
     let i, h = 0;
 
     for (i = 0; i < rule.conditions.length; i++) {
@@ -191,7 +191,7 @@ function classNameFromHash(hash: string): string {
 }
 
 export function
-ruleText(rule: CSSRuleEx, hash: string): string {
+ruleText(rule: CSSStyleRuleEx, hash: string): string {
     return wrapWithCondition(rule.conditions,
         [ "."
         , classNameFromHash(hash)
