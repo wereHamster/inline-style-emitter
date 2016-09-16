@@ -43,6 +43,9 @@ export type CSSStyleRuleEx = {
     // is globally unique, we hash the contents of the rule. It is therefore
     // implemented as a memoized getter.
 
+    cssText: string;
+    // ^ See CSSStyleRule cssText attribute.
+
     conditions: string[];
     // ^ A list of media queries and other conditions to wrap the style with.
     // CSS conditional and grouping rules can be nested, so this is an array.
@@ -60,8 +63,6 @@ export type CSSStyleRuleEx = {
     // This is used to provide graceful degradation on older browsers which do
     // not support the latest syntax.
 
-    cssText: string;
-    // ^ See CSSStyleRule cssText attribute.
 }
 
 
@@ -134,20 +135,23 @@ function extractStyleRules
     if (Object.keys(cssStyleDeclarations).length > 0) {
         rules.push({
             get className() {
-                const value = 'c' + ruleHash(this);
+                // Need to prefix the hash (number) with a letter because CSS
+                // selectors can not begin with a number.
+                const value = 'c' + styleHash(conditions, suffixes, cssStyleDeclarations);
+
                 Object.defineProperty(this, 'className', { value });
+                return value;
+            },
+
+            get cssText() {
+                const value = ruleText(this.className, conditions, suffixes, cssStyleDeclarations);
+                Object.defineProperty(this, 'cssText', { value });
                 return value;
             },
 
             conditions,
             suffixes,
             style: cssStyleDeclarations,
-
-            get cssText() {
-                const value = ruleText(this);
-                Object.defineProperty(this, 'cssText', { value });
-                return value;
-            },
         });
     }
 }
@@ -155,23 +159,23 @@ function extractStyleRules
 
 // A hash which is suitable to be used as a class name. The hash is made over
 // the style declarations and all conditions and suffixes.
-function ruleHash(rule: CSSStyleRuleEx): string {
+function styleHash(conditions: string[], suffixes: string[], style: { [key: string]: string | string[] }): string {
     let i, h = 0;
 
-    for (i = 0; i < rule.conditions.length; i++) {
-        h ^= stringHash(rule.conditions[i]);
+    for (i = 0; i < conditions.length; i++) {
+        h ^= stringHash(conditions[i]);
     }
 
-    for (i = 0; i < rule.suffixes.length; i++) {
-        h ^= stringHash(rule.suffixes[i]);
+    for (i = 0; i < suffixes.length; i++) {
+        h ^= stringHash(suffixes[i]);
     }
 
-    const sortedKeys = Object.keys(rule.style).sort();
+    const sortedKeys = Object.keys(style).sort();
     for (i = 0; i < sortedKeys.length; i++) {
         const key = sortedKeys[i];
         h ^= stringHash(key);
 
-        const v = rule.style[key];
+        const v = style[key];
         if (typeof v === "string") {
             h ^= stringHash(v);
         } else {
@@ -215,23 +219,22 @@ cssStyleDeclarationsToText(x: { [key: string]: string | string[] }): string {
 
 
 export function
-ruleText(rule: CSSStyleRuleEx): string {
-    return wrapWithCondition(rule.conditions,
+ruleText(className: string, conditions: string[], suffixes: string[], style: { [key: string]: string | string[] }): string {
+    return wrapWithCondition(conditions,
         [ "."
-        , rule.className
-        , rule.suffixes.join("")
+        , className
+        , suffixes.join("")
         , "{"
-        , cssStyleDeclarationsToText(rule.style)
+        , cssStyleDeclarationsToText(style)
         , "}"
         ].join("")
     );
 
-    function wrapWithCondition(conditions, text) {
-        if (conditions.length === 0) {
+    function wrapWithCondition(c, text) {
+        if (c.length === 0) {
             return text;
         } else {
-            return wrapWithCondition(conditions.slice(1),
-                conditions[0] + "{" + text + "}");
+            return wrapWithCondition(c.slice(1), c[0] + "{" + text + "}");
         }
     }
 }
