@@ -53,16 +53,6 @@ export type CSSStyleRuleEx = {
     suffixes: string[];
     // ^ Pseudo classes, pseudo elements and other suffixes to append to the
     // class selector. Multiple suffixes can be added, hence an array.
-
-    style: { [key: string]: string | string[] };
-    // ^ Like CSSStyleDeclaration but without the 'cssText' property. Just the
-    // pure CSS keys and values.
-    //
-    // In addition to plain strings, we support arrays as values in this
-    // object. Arrays are converted to multiple declarations for the same key.
-    // This is used to provide graceful degradation on older browsers which do
-    // not support the latest syntax.
-
 }
 
 
@@ -134,7 +124,6 @@ function extractStyleRules
 
             conditions,
             suffixes,
-            style: cssStyleDeclarations,
         });
     }
 }
