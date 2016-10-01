@@ -92,45 +92,28 @@ function extractStyleRules
 , conditions: string[]
 , suffixes: string[]
 ): void {
+    const cssStyleDeclarations: { [key: string]: string } = {};
 
-    // The CSSStyleDeclarations which are attached to the 'root' level of the
-    // style object. If there are any defined we insert them into the rules
-    // list at the end.
+    for (const k in s) {
+        const v = s[k];
 
-    let cssStyleDeclarations: { [key: string]: string } = {};
-
-
-    // First go through the object and extract keyframe declarations. These
-    // need to be processed first because the rest may depend on those.
-    // Then take the rest of the fields and parse them according to their type.
-
-    if (s["@keyframes"]) {
-        // TODO: Parse keyframe declarations.
-    }
-
-    if (s["@font-face"]) {
-        // TODO: Parse fontface declarations.
-    }
-
-    Object.keys(s).forEach(k => {
-        if (k === "@keyframes" || k === "@font-face") {
-            // Skip these keys, keyframes and font faces have been parsed
-            // before.
-
-        } else if (k[0] === ":") {
+        if (k[0] === ":") {
             // Pseudo classes and pseudo elements.
-            extractStyleRules(rules, s[k], conditions, concat(suffixes, [k]));
+            extractStyleRules(rules, v, conditions, concat(suffixes, [k]));
 
         } else if (k[0] === "@") {
-            // Media query or another @-rule. Except @keyframes an @font-face,
-            // those are handled earlier.
-            extractStyleRules(rules, s[k], concat(conditions, [k]), suffixes);
+            if (k.startsWith("@media")) {
+                extractStyleRules(rules, v, concat(conditions, [k]), suffixes);
+            } else {
+                // Ignore other @-rules.
+                console.warn(`extractStyleRules: Ignoring unknown @-rule '${k}'`);
+            }
 
         } else {
             // TODO: Replace keyframe placeholders with generated names.
-            cssStyleDeclarations[k] = s[k];
+            cssStyleDeclarations[k] = v;
         }
-    });
+    }
 
     if (Object.keys(cssStyleDeclarations).length > 0) {
         rules.push({
