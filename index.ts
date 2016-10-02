@@ -5,6 +5,16 @@ import { Props, ReactType, ReactElement, ReactNode,
 
 
 // -----------------------------------------------------------------------------
+export class ElementStyle {
+    constructor(public cssRules: CSSStyleRuleEx[]) {}
+}
+
+export const elementStyle = (x: CSSStyleDeclarationEx): ElementStyle =>
+    new ElementStyle(styleRules(x));
+
+
+
+// -----------------------------------------------------------------------------
 // A Style is a plain JavaScript object whose keys correspond to CSS properties.
 // It is similar to CSSStyleDeclaration, except it doesn't have any of the
 // special attributes and methods. And we support an extended syntax where
@@ -311,8 +321,12 @@ export class DocumentEmitter implements Emitter {
         return className;
     }
 
-    emitStyle(style: CSSStyleDeclarationEx): string[] {
-        return styleRules(style).map(this.emitRule);
+    emitStyle(style: ElementStyle | CSSStyleDeclarationEx): string[] {
+        if (style instanceof ElementStyle) {
+            return style.cssRules.map(this.emitRule);
+        } else {
+            return styleRules(style).map(this.emitRule);
+        }
     }
 }
 
@@ -337,7 +351,7 @@ export class Handle {
 // THe only public function we have so far.
 
 function
-emitStyle(h: Handle, style: CSSStyleDeclarationEx): string[] {
+emitStyle(h: Handle, style: ElementStyle | CSSStyleDeclarationEx): string[] {
     return h.emitter.emitStyle(style);
 }
 

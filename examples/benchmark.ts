@@ -3,13 +3,24 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Handle, processStyleProperties, DocumentEmitter} from "../index";
+import {elementStyle, Handle, processStyleProperties, DocumentEmitter} from "../index";
 
 const emitter = new DocumentEmitter(document);
 const h = new Handle(emitter);
 
+const styleCache = new Map();
+const style = (i: number) => {
+    if (styleCache.has(i)) {
+        return styleCache.get(i);
+    }
+
+    const s = elementStyle({ display: "inline-block", width: "3px", height: "3px", backgroundColor: `hsl(${i % 360},100%,50%)` });
+    styleCache.set(i, s);
+    return s;
+};
+
 function div(i) {
-    return React.DOM.div({ style: { display: "inline-block", width: "3px", height: "3px", backgroundColor: `hsl(${i % 360},100%,50%)` }});
+    return React.DOM.div({ style: style(i) });
 }
 
 let generationNumber = 0;
