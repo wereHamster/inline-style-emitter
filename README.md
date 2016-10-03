@@ -6,6 +6,8 @@ remains pure, and you get to decide when and how the styles are emitted
  - Styles are part of the React Element, and thus end up in the [jest] snapshot.
  - Rendering functions are kept pure.
  - CSS emitted before the DOM is updated, thus avoids [FOUC].
+ - Provides an explicit split between expensive style processing (which can be
+   done at compile time) and style emitting (at runtime).
 
 **Why does it exist**: Generating CSS rules can be viewed as part of
 rendering. There is no reason, on the conceptual level, to have a split between
@@ -33,6 +35,17 @@ objects or into an external file. This means we can also generate a static site
 while defining them with inline style syntax and still have the CSS rules
 written into an external file!
 
+**Style preparation**: The expensive part in preparing the styles is running
+the style objects through autoprefixer and other processors, and generating
+a unique identifier (hash) of the style object. This can (and should) be done
+during compile time. Furthermore, if you do this processing at compile
+time, you can avoid a costly (in terms of size) runtime dependency on
+autoprefixer and other modules. This library provides a function to convert
+a style object into an optimised shape:
+
+    function elementStyle(x: CSSStyleDeclarationEx): ElementStyle
+
+You can then use `ElementStyle` as the value of the `style` property.
 
 ### Example (browser)
 
@@ -40,17 +53,20 @@ written into an external file!
 ```javascript
 import React from "react";
 import ReactDOM from "react/dom";
-import {Handle, DocumentEmitter} from "inline-style-emitter";
+import {elementStyle, Handle, DocumentEmitter} from "inline-style-emitter";
 
+
+// Prepare style objects.
+const avatarStyle = elementStyle({display:'flex',flexDirection:'row'});
+const imgStyle = elementStyle({display:'block',width:'20rem',height:'20rem'});
+const usernameStyle = elementStyle({flex:1});
 
 // Some component which uses inline styles.
 function Avatar({ url, username }) {
     return (
-        <div style={{display:'flex',flexDirection:'row'}}>
-            <img style={{display:'block',width:'20rem',height:'20rem'}}
-                 src={url}
-            />
-            <div style={{flex:1}}>{username}</div>
+        <div style={avatarStyle}>
+            <img style={imgStyle} src={url} />
+            <div style={usernameStyle}>{username}</div>
         </div>
     );
 }
