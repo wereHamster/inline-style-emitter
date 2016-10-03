@@ -55,14 +55,6 @@ export type CSSStyleRuleEx = {
 
     cssText: string;
     // ^ See CSSStyleRule cssText attribute.
-
-    conditions: string[];
-    // ^ A list of media queries and other conditions to wrap the style with.
-    // CSS conditional and grouping rules can be nested, so this is an array.
-
-    suffixes: string[];
-    // ^ Pseudo classes, pseudo elements and other suffixes to append to the
-    // class selector. Multiple suffixes can be added, hence an array.
 }
 
 
@@ -131,9 +123,6 @@ function extractStyleRules
                 Object.defineProperty(this, "cssText", { value });
                 return value;
             },
-
-            conditions,
-            suffixes,
         });
     }
 }
