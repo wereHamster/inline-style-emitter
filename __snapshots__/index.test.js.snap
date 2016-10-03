@@ -14,9 +14,6 @@ Array [
       "@media (max-width:1px)"
     ],
     "cssText": "@media (max-width:1px){.c-553554276{color:red}}",
-    "style": Object {
-      "color": "red"
-    },
     "suffixes": Array []
   }
 ]
@@ -30,9 +27,6 @@ Array [
     "className": "c-1898795152",
     "conditions": Array [],
     "cssText": ".c-1898795152:hover{color:blue}",
-    "style": Object {
-      "color": "blue"
-    },
     "suffixes": Array [
       ":hover"
     ]
@@ -41,9 +35,6 @@ Array [
     "className": "c2106253956",
     "conditions": Array [],
     "cssText": ".c2106253956{color:red}",
-    "style": Object {
-      "color": "red"
-    },
     "suffixes": Array []
   }
 ]
@@ -55,9 +46,6 @@ Array [
     "className": "c2106253956",
     "conditions": Array [],
     "cssText": ".c2106253956{color:red}",
-    "style": Object {
-      "color": "red"
-    },
     "suffixes": Array []
   }
 ]
@@ -69,9 +57,6 @@ Array [
     "className": "c2106253956",
     "conditions": Array [],
     "cssText": ".c2106253956{color:red}",
-    "style": Object {
-      "color": "red"
-    },
     "suffixes": Array []
   }
 ]
