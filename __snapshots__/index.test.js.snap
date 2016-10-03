@@ -1,3 +1,113 @@
+exports[`React Element Snapshots snapshots {"@font-face":{"test":{}}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"@keyframes":{"test":{"0%":{"width":"1px"}}}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "c-553554276",
+          "conditions": Array [
+            "@media (max-width:1px)"
+          ],
+          "cssText": "@media (max-width:1px){.c-553554276{color:red}}",
+          "suffixes": Array []
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"@media (max-width:1px)":{}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "c-1898795152",
+          "conditions": Array [],
+          "cssText": ".c-1898795152:hover{color:blue}",
+          "suffixes": Array [
+            ":hover"
+          ]
+        },
+        Object {
+          "className": "c2106253956",
+          "conditions": Array [],
+          "cssText": ".c2106253956{color:red}",
+          "suffixes": Array []
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"color":"red",":hover":{}} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "c2106253956",
+          "conditions": Array [],
+          "cssText": ".c2106253956{color:red}",
+          "suffixes": Array []
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {"color":"red"} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "c2106253956",
+          "conditions": Array [],
+          "cssText": ".c2106253956{color:red}",
+          "suffixes": Array []
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`React Element Snapshots snapshots {} 1`] = `
+<div
+  style={
+    ElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
 exports[`cssStyleDeclarationsToText snapshots {"color":"red"} 1`] = `"color:red"`;
 
 exports[`cssStyleDeclarationsToText snapshots {"color":["red","blue"]} 1`] = `"color:red;color:blue"`;

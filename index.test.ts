@@ -3,7 +3,9 @@
 
 declare var describe: any, it: any, expect: any;
 
-import { styleRules, cssStyleDeclarationsToText } from "./index";
+import { elementStyle, styleRules, cssStyleDeclarationsToText } from "./index";
+import { createElement } from 'react';
+
 
 
 function testSnapshots1(inputs, f) {
@@ -60,4 +62,19 @@ describe("cssStyleDeclarationsToText", () => {
         [ {color:"red"}
         , {color:["red","blue"]}
         ], cssStyleDeclarationsToText);
+});
+
+
+
+describe("React Element Snapshots", () => {
+    testSnapshots1(
+        [ {}
+        , {color:"red"}
+        , {color:"red",":hover":{}}
+        , {color:"red",":hover":{color:"blue"}}
+        , {"@media (max-width:1px)":{}}
+        , {"@media (max-width:1px)":{color:"red"}}
+        , {"@keyframes":{test:{"0%":{width:"1px"}}}}
+        , {"@font-face":{test:{}}}
+        ], obj => createElement("div", {style: elementStyle(obj)}));
 });
