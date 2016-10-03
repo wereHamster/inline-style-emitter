@@ -4,7 +4,7 @@
 declare var describe: any, it: any, expect: any;
 
 import { elementStyle, styleRules, cssStyleDeclarationsToText } from "./index";
-import { createElement } from 'react';
+import { createElement } from "react";
 
 
 
