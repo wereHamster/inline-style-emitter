@@ -1,21 +1,3 @@
-exports[`React Element Snapshots snapshots {"@font-face":{"test":{}}} 1`] = `
-<div
-  style={
-    ElementStyle {
-      "cssRules": Array []
-    }
-  } />
-`;
-
-exports[`React Element Snapshots snapshots {"@keyframes":{"test":{"0%":{"width":"1px"}}}} 1`] = `
-<div
-  style={
-    ElementStyle {
-      "cssRules": Array []
-    }
-  } />
-`;
-
 exports[`React Element Snapshots snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
 <div
   style={
@@ -97,10 +79,6 @@ exports[`React Element Snapshots snapshots {} 1`] = `
 exports[`cssStyleDeclarationsToText snapshots {"color":"red"} 1`] = `"color:red"`;
 
 exports[`cssStyleDeclarationsToText snapshots {"color":["red","blue"]} 1`] = `"color:red;color:blue"`;
-
-exports[`styleRules snapshots {"@font-face":{"test":{}}} 1`] = `Array []`;
-
-exports[`styleRules snapshots {"@keyframes":{"test":{"0%":{"width":"1px"}}}} 1`] = `Array []`;
 
 exports[`styleRules snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
 Array [

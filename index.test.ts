@@ -31,10 +31,6 @@ describe("styleRules", () => {
         expect(styleRules({"@media (max-width:1px)":{}}).length).toBe(0);
         expect(styleRules({"@media (max-width:1px)":{color:"red"}}).length).toBe(1);
     });
-    it("should ignore @keyframes and @font-face", () => {
-        expect(styleRules({"@keyframes":{test:{"0%":{width:"1px"}}}}).length).toBe(0);
-        expect(styleRules({"@font-face":{test:{}}}).length).toBe(0);
-    });
 
     testSnapshots1(
         [ {}
@@ -43,8 +39,6 @@ describe("styleRules", () => {
         , {color:"red",":hover":{color:"blue"}}
         , {"@media (max-width:1px)":{}}
         , {"@media (max-width:1px)":{color:"red"}}
-        , {"@keyframes":{test:{"0%":{width:"1px"}}}}
-        , {"@font-face":{test:{}}}
         ], styleRules);
 });
 
@@ -74,7 +68,5 @@ describe("React Element Snapshots", () => {
         , {color:"red",":hover":{color:"blue"}}
         , {"@media (max-width:1px)":{}}
         , {"@media (max-width:1px)":{color:"red"}}
-        , {"@keyframes":{test:{"0%":{width:"1px"}}}}
-        , {"@font-face":{test:{}}}
         ], obj => createElement("div", {style: elementStyle(obj)}));
 });
