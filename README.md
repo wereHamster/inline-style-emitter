@@ -1,8 +1,11 @@
-<div style="text-align:center;font-size:1.6em;margin-bottom:1.5em">Inline Style Emitter</div>
+**TLDR**: Styles should be part of the (React) Virtual DOM tree, not treated
+as an side-effect of rendering. With this library, rendering React components
+remains pure, and you get to decide when and how the styles are emitted
+(write into the browser DOM or out into a CSS file).
 
-**TLDR**: Write inline styles in your React components. Automatically emit
-those CSS rules into a stylesheet. Works on the client as well as on the server
-(when generating static pages).
+ - Styles are part of the React Element, and thus end up in the [jest] snapshot.
+ - Rendering functions are kept pure.
+ - CSS emitted before the DOM is updated, thus avoids [FOUC].
 
 **Why does it exist**: Generating CSS rules can be viewed as part of
 rendering. There is no reason, on the conceptual level, to have a split between
@@ -81,3 +84,5 @@ myRender(<Avatar url="..." username="wereHamster" />,
 
 [react-inline-css]: https://github.com/FormidableLabs/radium/tree/master/docs/comparison
 [radium]: http://projects.formidablelabs.com/radium/
+[jest]: https://facebook.github.io/jest/
+[FOUC]: https://en.wikipedia.org/wiki/Flash_of_unstyled_content
