@@ -2,7 +2,7 @@
 import { Props, ReactType, ReactElement, ReactNode,
     ComponentClass, StatelessComponent } from "react";
 
-import { Key, I64, hash, _xor } from "./siphash";
+import { Key, I64, i64Hex, hash, _xor } from "./siphash";
 const hashKey: Key = [0x12345678, 0x23456789, 0x34567890, 0x45678901];
 
 
@@ -163,8 +163,7 @@ function styleHash
         }
     }
 
-    return ("0000000" + h.h.toString(16)).substr(-8) +
-           ("0000000" + h.l.toString(16)).substr(-8);
+    return i64Hex(h);
 }
 
 
