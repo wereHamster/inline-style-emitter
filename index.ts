@@ -303,7 +303,7 @@ export class DocumentEmitter implements Emitter {
         const {className} = rule;
 
         if (!this.cssRules.has(className)) {
-            this.styleSheet.insertRule(rule.cssText, 0);
+            this.styleSheet.insertRule(rule.cssText, this.styleSheet.cssRules.length);
             this.cssRules.add(className);
         }
 
