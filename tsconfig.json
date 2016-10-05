@@ -16,7 +16,7 @@
     },
     "files": [
         "examples/benchmark.ts",
-        "examples/simple.ts",
+        "examples/simple.tsx",
         "index.ts",
         "index.test.ts",
         "typings/index.d.ts"
