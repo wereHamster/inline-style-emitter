@@ -19,6 +19,8 @@
         "examples/simple.ts",
         "index.ts",
         "index.test.ts",
+        "siphash.ts",
+        "siphash.test.ts",
         "typings/index.d.ts"
     ]
 }
