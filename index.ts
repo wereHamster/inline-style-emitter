@@ -359,7 +359,11 @@ emitStyle(h: Handle, style: ElementStyle | CSSStyleDeclarationEx): string[] {
 // the generated 'className'.
 
 export function
-processStyleProperties<T>(h: Handle, React, el: ReactElement<T>): ReactElement<T> {
+processStyleProperties<T>(h: Handle, React, el: null | ReactElement<T>): null | ReactElement<T> {
+    if (el === null) {
+        return null;
+    }
+
     let type = el.type;
 
     if (typeof type === "function") {

@@ -3,7 +3,10 @@
 
 declare var describe: any, it: any, expect: any;
 
-import { elementStyle, styleRules, cssStyleDeclarationsToText } from "./index";
+import { Handle, elementStyle, styleRules, cssStyleDeclarationsToText,
+    processStyleProperties } from "./index";
+
+import * as React from "react";
 import { createElement } from "react";
 
 
@@ -69,4 +72,18 @@ describe("React Element Snapshots", () => {
         , {"@media (max-width:1px)":{}}
         , {"@media (max-width:1px)":{color:"red"}}
         ], obj => createElement("div", {style: elementStyle(obj)}));
+});
+
+
+
+describe("processStyleProperties", () => {
+    it("should propagate null", () => {
+        const seH = new Handle(undefined);
+        expect(processStyleProperties(seH, React, null)).toBe(null);
+    });
+    it("should not fail when the element render function returns null", () => {
+        const seH = new Handle(undefined);
+        expect(() => processStyleProperties(seH, React, createElement(() => null)))
+            .not.toThrow();
+    });
 });
