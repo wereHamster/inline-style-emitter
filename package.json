@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "main": "index.js",
   "scripts": {
-    "lint": "tslint index.ts index.test.ts examples/*.ts",
+    "lint": "tslint index.ts index.test.ts siphash.ts siphash.test.ts examples/*.ts",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
     "test": "script/test"

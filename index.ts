@@ -2,6 +2,9 @@
 import { Props, ReactType, ReactElement, ReactNode,
     ComponentClass, StatelessComponent } from "react";
 
+import { Key, I64, i64Hex, hash, _xor } from "./siphash";
+const hashKey: Key = [0x12345678, 0x23456789, 0x34567890, 0x45678901];
+
 
 
 // -----------------------------------------------------------------------------
@@ -135,32 +138,32 @@ function styleHash
 , suffixes: string[]
 , style: { [key: string]: string | string[] }
 ): string {
-    let i, h = 0;
+    let i, h = hash(hashKey, "");
 
     for (i = 0; i < conditions.length; i++) {
-        h ^= stringHash(conditions[i]);
+        stringHash(h, conditions[i]);
     }
 
     for (i = 0; i < suffixes.length; i++) {
-        h ^= stringHash(suffixes[i]);
+        stringHash(h, suffixes[i]);
     }
 
     const sortedKeys = Object.keys(style).sort();
     for (i = 0; i < sortedKeys.length; i++) {
         const key = sortedKeys[i];
-        h ^= stringHash(key);
+        stringHash(h, key);
 
         const v = style[key];
         if (typeof v === "string") {
-            h ^= stringHash(v);
+            stringHash(h, v);
         } else {
             for (let j = 0; j < v.length; j++) {
-                h ^= stringHash(v[j]);
+                stringHash(h, v[j]);
             }
         }
     }
 
-    return "" + h;
+    return i64Hex(h);
 }
 
 
@@ -223,25 +226,8 @@ function concat(xs, ys) {
     return [].concat.call([], xs, ys);
 }
 
-
-
-
-
-// A simple string hash function.
-//
-// TODO: Use a better hash function, one with more bits (at least 64).
-// https://github.com/vkandy/jenkins-hash-js/blob/master/src/jenkins.js seems
-// a good candidate which is small and has no dependencies.
-function stringHash(str: string): number {
-    let length = str.length
-      , value  = 0x811c9dc5;
-
-    for (let i = 0; i < length; i++) {
-        value ^= str.charCodeAt(i);
-        value += (value << 1) + (value << 4) + (value << 7) + (value << 8) + (value << 24);
-    }
-
-    return (value >>> 0) | 0;
+function stringHash(v: I64, str: string): void {
+    _xor(v, hash(hashKey, str));
 }
 
 
