@@ -3,9 +3,11 @@
   "version": "0.0.3",
   "main": "index.js",
   "scripts": {
-    "lint": "tslint index.ts index.test.ts siphash.ts siphash.test.ts examples/*.ts",
+    "lint": "tslint index.ts 'src/**/*.ts' 'examples/**/*.ts'",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
+    "jest": "jest",
+    "jest:watch": "jest --watch",
     "test": "script/test"
   },
   "devDependencies": {
@@ -16,7 +18,9 @@
     "browserify": "^13.1.0",
     "jest-cli": "^15.1.1",
     "react": "^15.3.2",
+    "react-addons-perf": "^15.3.2",
     "react-router": "^4.0.0-2",
+    "react-test-renderer": "^15.3.2",
     "tslint": "^3.15.1",
     "typescript": "^2.0.3",
     "typings": "^1.4.0"

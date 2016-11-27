@@ -1,3 +1,25 @@
+ Options for a new project name:
+
+ - react-pure-css
+ - react-pure-style
+ - pure-css (already taken on npm)
+ - pure-css-react
+ - pure-style
+ - pure-element-style
+ - react-pure-element-style
+ - data-css / data-css-react
+ - data-css-extended
+ - cssex (already taken on npm)
+ - pure-data-css
+ - dom-css / dom-css-react
+ - dom-style / dom-style-react
+
+ - Pure CSS data types and processing functions (not necessarily DOM related).
+ - Extended CSS syntax to support media queries and pseudo elements.
+ - Different Emitters: Document, Memory, ...
+ - React integration (but bulk of the package is *not* react-specific).
+
+
 **TLDR**: Styles should be part of the (React) Virtual DOM tree, not treated
 as an side-effect of rendering. With this library, rendering React components
 remains pure, and you get to decide when and how the styles are emitted

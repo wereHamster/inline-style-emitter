@@ -13,14 +13,5 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true
-    },
-    "files": [
-        "examples/benchmark.ts",
-        "examples/simple.tsx",
-        "index.ts",
-        "index.test.ts",
-        "siphash.ts",
-        "siphash.test.ts",
-        "typings/index.d.ts"
-    ]
+    }
 }

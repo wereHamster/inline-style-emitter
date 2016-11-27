@@ -3,7 +3,9 @@
 
 declare var require: any, describe: any, it: any, expect: any;
 
-import * as siphash from "./siphash";
+import * as siphash from "./SipHash";
+
+
 
 const vectors = [
   ["aON1dHrq90SbG8Hx",

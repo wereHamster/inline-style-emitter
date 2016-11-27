@@ -1,0 +1,171 @@
+exports[`cssElementStyle snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
+CSSElementStyle {
+  "cssRules": Array [
+    Object {
+      "className": "s43660e9eeeba4977",
+      "conditions": Array [
+        "@media (max-width:1px)"
+      ],
+      "cssDeclarations": Object {
+        "color": "red"
+      },
+      "hash": "43660e9eeeba4977",
+      "suffixes": Array [],
+      "type": 1
+    }
+  ]
+}
+`;
+
+exports[`cssElementStyle snapshots {"@media (max-width:1px)":{}} 1`] = `
+CSSElementStyle {
+  "cssRules": Array []
+}
+`;
+
+exports[`cssElementStyle snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
+CSSElementStyle {
+  "cssRules": Array [
+    Object {
+      "className": "s46576037294a675a",
+      "conditions": Array [],
+      "cssDeclarations": Object {
+        "color": "blue"
+      },
+      "hash": "46576037294a675a",
+      "suffixes": Array [
+        ":hover"
+      ],
+      "type": 1
+    },
+    Object {
+      "className": "s29ec1a4d45b6d719",
+      "conditions": Array [],
+      "cssDeclarations": Object {
+        "color": "red"
+      },
+      "hash": "29ec1a4d45b6d719",
+      "suffixes": Array [],
+      "type": 1
+    }
+  ]
+}
+`;
+
+exports[`cssElementStyle snapshots {"color":"red",":hover":{}} 1`] = `
+CSSElementStyle {
+  "cssRules": Array [
+    Object {
+      "className": "s29ec1a4d45b6d719",
+      "conditions": Array [],
+      "cssDeclarations": Object {
+        "color": "red"
+      },
+      "hash": "29ec1a4d45b6d719",
+      "suffixes": Array [],
+      "type": 1
+    }
+  ]
+}
+`;
+
+exports[`cssElementStyle snapshots {"color":"red"} 1`] = `
+CSSElementStyle {
+  "cssRules": Array [
+    Object {
+      "className": "s29ec1a4d45b6d719",
+      "conditions": Array [],
+      "cssDeclarations": Object {
+        "color": "red"
+      },
+      "hash": "29ec1a4d45b6d719",
+      "suffixes": Array [],
+      "type": 1
+    }
+  ]
+}
+`;
+
+exports[`cssElementStyle snapshots {} 1`] = `
+CSSElementStyle {
+  "cssRules": Array []
+}
+`;
+
+exports[`styleRules snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
+Array [
+  Object {
+    "className": "s43660e9eeeba4977",
+    "conditions": Array [
+      "@media (max-width:1px)"
+    ],
+    "cssDeclarations": Object {
+      "color": "red"
+    },
+    "hash": "43660e9eeeba4977",
+    "suffixes": Array [],
+    "type": 1
+  }
+]
+`;
+
+exports[`styleRules snapshots {"@media (max-width:1px)":{}} 1`] = `Array []`;
+
+exports[`styleRules snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
+Array [
+  Object {
+    "className": "s46576037294a675a",
+    "conditions": Array [],
+    "cssDeclarations": Object {
+      "color": "blue"
+    },
+    "hash": "46576037294a675a",
+    "suffixes": Array [
+      ":hover"
+    ],
+    "type": 1
+  },
+  Object {
+    "className": "s29ec1a4d45b6d719",
+    "conditions": Array [],
+    "cssDeclarations": Object {
+      "color": "red"
+    },
+    "hash": "29ec1a4d45b6d719",
+    "suffixes": Array [],
+    "type": 1
+  }
+]
+`;
+
+exports[`styleRules snapshots {"color":"red",":hover":{}} 1`] = `
+Array [
+  Object {
+    "className": "s29ec1a4d45b6d719",
+    "conditions": Array [],
+    "cssDeclarations": Object {
+      "color": "red"
+    },
+    "hash": "29ec1a4d45b6d719",
+    "suffixes": Array [],
+    "type": 1
+  }
+]
+`;
+
+exports[`styleRules snapshots {"color":"red"} 1`] = `
+Array [
+  Object {
+    "className": "s29ec1a4d45b6d719",
+    "conditions": Array [],
+    "cssDeclarations": Object {
+      "color": "red"
+    },
+    "hash": "29ec1a4d45b6d719",
+    "suffixes": Array [],
+    "type": 1
+  }
+]
+`;
+
+exports[`styleRules snapshots {} 1`] = `Array []`;

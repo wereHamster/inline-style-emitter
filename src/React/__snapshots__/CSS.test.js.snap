@@ -1,0 +1,143 @@
+exports[`createElement + cssElementStyle snapshots {"@media (max-width:1px)":{"color":"red"}} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "s43660e9eeeba4977",
+          "conditions": Array [
+            "@media (max-width:1px)"
+          ],
+          "cssDeclarations": Object {
+            "color": "red"
+          },
+          "hash": "43660e9eeeba4977",
+          "suffixes": Array [],
+          "type": 1
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`createElement + cssElementStyle snapshots {"@media (max-width:1px)":{}} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
+exports[`createElement + cssElementStyle snapshots {"color":"red",":hover":{"color":"blue"}} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "s46576037294a675a",
+          "conditions": Array [],
+          "cssDeclarations": Object {
+            "color": "blue"
+          },
+          "hash": "46576037294a675a",
+          "suffixes": Array [
+            ":hover"
+          ],
+          "type": 1
+        },
+        Object {
+          "className": "s29ec1a4d45b6d719",
+          "conditions": Array [],
+          "cssDeclarations": Object {
+            "color": "red"
+          },
+          "hash": "29ec1a4d45b6d719",
+          "suffixes": Array [],
+          "type": 1
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`createElement + cssElementStyle snapshots {"color":"red",":hover":{}} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "s29ec1a4d45b6d719",
+          "conditions": Array [],
+          "cssDeclarations": Object {
+            "color": "red"
+          },
+          "hash": "29ec1a4d45b6d719",
+          "suffixes": Array [],
+          "type": 1
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`createElement + cssElementStyle snapshots {"color":"red"} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array [
+        Object {
+          "className": "s29ec1a4d45b6d719",
+          "conditions": Array [],
+          "cssDeclarations": Object {
+            "color": "red"
+          },
+          "hash": "29ec1a4d45b6d719",
+          "suffixes": Array [],
+          "type": 1
+        }
+      ]
+    }
+  } />
+`;
+
+exports[`createElement + cssElementStyle snapshots {} 1`] = `
+<div
+  style={
+    CSSElementStyle {
+      "cssRules": Array []
+    }
+  } />
+`;
+
+exports[`wrapElement snapshots {"typeI":0,"childrenI":0} 1`] = `null`;
+
+exports[`wrapElement snapshots {"typeI":0,"childrenI":1} 1`] = `null`;
+
+exports[`wrapElement snapshots {"typeI":0,"childrenI":2} 1`] = `null`;
+
+exports[`wrapElement snapshots {"typeI":0,"childrenI":3} 1`] = `null`;
+
+exports[`wrapElement snapshots {"typeI":0,"childrenI":4} 1`] = `null`;
+
+exports[`wrapElement snapshots {"typeI":1,"childrenI":0} 1`] = `<div />`;
+
+exports[`wrapElement snapshots {"typeI":1,"childrenI":1} 1`] = `<div />`;
+
+exports[`wrapElement snapshots {"typeI":1,"childrenI":2} 1`] = `<div />`;
+
+exports[`wrapElement snapshots {"typeI":1,"childrenI":3} 1`] = `
+<div>
+  <div />
+  <div />
+  <div />
+</div>
+`;
+
+exports[`wrapElement snapshots {"typeI":1,"childrenI":4} 1`] = `
+<div>
+  <div />
+  <div />
+  <div />
+</div>
+`;

@@ -1,0 +1,5 @@
+exports[`renderCSSDeclarations snapshots {"color":"red"} 1`] = `"color:red"`;
+
+exports[`renderCSSDeclarations snapshots {"color":["red","blue"]} 1`] = `"color:red;color:blue"`;
+
+exports[`renderCSSDeclarations snapshots {"margin":0} 1`] = `"margin:0"`;

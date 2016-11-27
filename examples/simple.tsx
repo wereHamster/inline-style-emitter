@@ -6,10 +6,10 @@ import * as ReactDOM from "react-dom";
 declare var require: any;
 const {MemoryRouter, Match, Miss, Link} = require('react-router');
 
-import {Handle, processStyleProperties, DocumentEmitter} from "../index";
+import {newHandle, wrapElement, DocumentEmitter} from "../index";
 
-const emitter = new DocumentEmitter(document);
-const h = new Handle(emitter);
+const emitter = new DocumentEmitter(window);
+const h = newHandle(React, emitter);
 
 function Foo({foo}) {
     return React.DOM.div({style:{margin: "10px 21px"}}, "Foo", foo);
@@ -60,5 +60,5 @@ const rootNode = (
     </MemoryRouter>
 );
 
-const newRootNode = processStyleProperties(h, React, rootNode);
+const newRootNode = wrapElement(h, rootNode);
 ReactDOM.render(newRootNode, document.getElementById("root"));
